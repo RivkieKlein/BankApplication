@@ -4,15 +4,17 @@ import java.time.LocalDate;
 
 public class Transaction {
 	
-	private long lastTransactionID;
-	private String accountID;
-	private double transAmount;
+	private static long lastTransactionID=0;
+	protected String accountID;
+	protected double transAmount;
 	private LocalDate transDate;
 	private long transID;
 	private TransType type;
 	
 	public Transaction() {
-		
+		transDate=LocalDate.now();
+		transID=lastTransactionID+1;
+		lastTransactionID=transID;
 	}
 
 	public String getAccountID() {
