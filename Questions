@@ -1,0 +1,9 @@
+Teller:
+how can they create one with out a login, there is no setter to add one later. should i make a setter that lets you add a new login
+should there be specs for a proper password
+
+Transaction:
+empty constructor??????
+
+Interest Rate:
+how/where is interval set
