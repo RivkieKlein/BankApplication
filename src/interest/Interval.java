@@ -1,9 +1,9 @@
 package interest;
 
 public enum Interval {
-	Daily(365),
-	Monthly(12),
-	Yearly(1);
+	DAILY(365),
+	MONTHLY(12),
+	YEARLY(1);
 	
 	private int numTimes;
 	

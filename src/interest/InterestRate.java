@@ -8,7 +8,7 @@ public class InterestRate {
 	private LocalDate rateSetDate;
 	private Interval interval;
 	
-	private InterestRate(double rate, LocalDate rateSetDate) {
+	public InterestRate(double rate, LocalDate rateSetDate) {
 		this.rate=rate;
 		this.rateSetDate=rateSetDate;
 	}

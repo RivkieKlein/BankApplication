@@ -2,6 +2,7 @@ package accounts;
 
 import java.util.ArrayList;
 
+import checks.Check;
 import customer.Customer;
 
 public class CheckingAccount extends BankAccount {

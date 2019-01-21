@@ -8,8 +8,11 @@ import customer.Address;
 import customer.Customer;
 import fees.Fee;
 import homework1.InputDataException;
+import transactions.Deposit;
+import transactions.DepositType;
 import transactions.Transaction;
 import transactions.Transfer;
+import transactions.Withdrawal;
 
 public class BankAccount {
 	String accountID;
@@ -41,7 +44,22 @@ public class BankAccount {
 		if(dep<0) {
 			throw new InputDataException("Deposit cannot be less than 0");
 		}
-		currentBalance+=dep;
+		else {
+			//whatever the type just add amount to total
+			currentBalance+=dep;
+			
+			//add Deposit to transaction array list based on type
+			switch (type){
+			case CASH:
+				transactions.add(new Deposit(accountID, dep));
+				break;
+			case CHECK:
+				break;
+			case MIXED:
+				break;
+			
+			}
+		}
 	}
 	
 	//withdraw money from account
@@ -52,7 +70,9 @@ public class BankAccount {
 		if(wd>currentBalance) {
 			throw new InputDataException("Withdrawel amount exceeds current balance");
 		}
+		
 		currentBalance=currentBalance-wd;
+		transactions.add(new Withdrawal(accountID, wd));
 		
 	}
 
@@ -62,13 +82,13 @@ public class BankAccount {
 		currentBalance=currentBalance-fee.getFeeAmount();
 	}
 	
-	public Transfer transferTo(double amount, int accountID) {
-		Transfer t = new Transfer(this.accountID, accountID, amount);
+	public Transfer transferTo(double amount, String accountID) {
+		Transfer t = new Transfer(accountID, this.accountID, amount);
 		
 		//add to transactions for this account
 		transactions.add(t);
 		
-		currentBalance=currentBalance-amount;
+		currentBalance=currentBalance+amount;
 		
 		return t;
 		
@@ -76,7 +96,7 @@ public class BankAccount {
 	
 	public void transferFrom(Transfer transfer) {
 		transactions.add(transfer);
-		currentBalance+=transfer.getTransAmount();
+		currentBalance=currentBalance-transfer.getTransAmount();
 		
 	}
 	

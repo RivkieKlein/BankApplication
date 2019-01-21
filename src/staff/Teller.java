@@ -26,14 +26,14 @@ public class Teller extends Employee{
 		return loginID;
 	}
 	
-	//will throw invalid data exception if current is not valid
+	//will throw input data exception if current is not valid
 	public void setLoginID(String current, String newID) {
 		
 		if(loginID.equals(current)) {
 			loginID=newID;
 		}
 		else {
-			throw new InvalidDataException("Current login ID doesnt match the one in our system. Cannot reset");
+			throw new InputDataException("Current login ID doesnt match the one in our system. Cannot reset");
 		}
 		
 	}

@@ -3,7 +3,9 @@ package accounts;
 import java.time.LocalDate;
 
 import customer.Customer;
+import interest.InterestRate;
 import interest.Interval;
+import transactions.InterestPosting;
 
 public class SavingsAccount extends BankAccount implements Accruable {
 	private Interval interestInterval;
@@ -23,10 +25,28 @@ public class SavingsAccount extends BankAccount implements Accruable {
 		// TODO Auto-generated method stub
 		
 	}
-	@Override
+	
 	public void postInterest(double rate, Interval interval) {
-		// TODO Auto-generated method stub
+		rate = rate/100;
+		double earned;
+		earned = currentBalance*rate;
+		currentBalance+=earned;
 		
+		//the current balane right after interest was posted
+		transactions.add(new InterestPosting(rate, currentBalance, interval));
+		
+	}
+	
+	@Override
+	public void postInterest(InterestRate rate, Interval interval) {
+
+		postInterest(rate.getRate(), interval);
+		
+	}
+	@Override
+	public Interval getInterval() {
+		
+		return interestInterval;
 	}
 	
 	

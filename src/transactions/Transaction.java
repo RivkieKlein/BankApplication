@@ -9,7 +9,7 @@ public class Transaction {
 	protected double transAmount;
 	private LocalDate transDate;
 	private long transID;
-	private TransType type;
+	protected TransType type;
 	
 	public Transaction() {
 		transDate=LocalDate.now();

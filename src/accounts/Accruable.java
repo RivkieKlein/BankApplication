@@ -12,5 +12,7 @@ public interface Accruable {
 	public void getInterestPosted(LocalDate startDate, LocalDate endDate);
 	
 	public void postInterest(InterestRate rate, Interval interval);
+	
+	public Interval getInterval();
 
 }
